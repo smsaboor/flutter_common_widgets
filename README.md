@@ -1,4 +1,10 @@
 <!--
+https://blog.devgenius.io/building-and-publishing-a-flutter-package-9787f36d0f7c
+when add some new files t0 github then follow below
+git add .
+git commit -m “finished first version”
+git push origin master
+
 This README describes the package. If you publish this package to pub.dev,
 this README's contents appear on the landing page for your package.
 
