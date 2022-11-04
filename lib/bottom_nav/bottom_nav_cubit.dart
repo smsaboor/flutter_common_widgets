@@ -5,7 +5,7 @@ part 'bottom_nav_state.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {
   NavigationCubit() : super(NavigationState(NavbarItem.index1, 0));
-
+  //BlocProvider.of<NavigationCubit>(context).setNavBarItem(0);
   void setNavBarItem(int tab){
     switch (tab) {
       case 0:
