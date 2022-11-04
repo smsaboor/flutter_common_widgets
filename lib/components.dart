@@ -155,12 +155,17 @@ Widget mySeparator() => Container(
     );
 void showToast({
   required String msg,
+  Color backgroundColor=Colors.black87,
+  Color textColor=Colors.white,
+  double fontSize=16.0,
+  Toast toastLength=Toast.LENGTH_SHORT,
+  ToastGravity toastGravity=ToastGravity.CENTER,
 }) async =>
     await Fluttertoast.showToast(
         msg: msg,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
+        toastLength: toastLength,
+        gravity: toastGravity,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.black87,
-        textColor: Colors.white,
-        fontSize: 16.0);
+        backgroundColor: backgroundColor,
+        textColor: textColor,
+        fontSize: fontSize);
