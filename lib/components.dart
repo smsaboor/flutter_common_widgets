@@ -1,21 +1,140 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Widget defaultFormField(
-        {required TextEditingController controller,
-        required TextInputType type,
-        Function? onSubmit,
-        Function? onChange,
 
-        bool isPassword = false,
-        required String? Function(String? val)? validate,
-        double radius = 0.0,
-        required String label,
-        IconData? prefix,
-        IconData? suffix,
-        Function? suffixPressed,
-        bool isClickable = true,
-        double width = double.infinity}) =>
+class StarRating extends StatelessWidget {
+  final int starCount;
+  final num rating;
+  final Color? color;
+  final MainAxisAlignment rowAlignment;
+
+  const StarRating({super.key,
+    this.starCount = 5,
+    this.rating = .0,
+    this.color,
+    this.rowAlignment = MainAxisAlignment.center,
+  });
+
+  Widget buildStar(
+      BuildContext context, int rank, MainAxisAlignment rowAlignment) {
+    Icon icon;
+    if (rank >= rating) {
+      return icon = Icon(
+        Icons.star_border,
+        color: Theme.of(context).buttonColor,
+      );
+    } else if (rank > rating - 1 && rank < rating) {
+      return icon = Icon(
+        Icons.star_half,
+        color: color ?? Theme.of(context).primaryColor,
+      );
+    } else {
+      return icon =  Icon(
+        Icons.star,
+        color: color ?? Theme.of(context).primaryColor,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Row(
+      mainAxisAlignment: rowAlignment,
+      children:  List.generate(
+        starCount,
+            (rank) => buildStar(context, rank, rowAlignment),
+      ),
+    );
+  }
+}
+String titleCase(String text) {
+  if (text.length <= 1) return text.toUpperCase();
+  var words = text.split(' ');
+  var capitalized = words.map((word) {
+    var first = word.substring(0, 1).toUpperCase();
+    var rest = word.substring(1);
+    return '$first$rest';
+  });
+  return capitalized.join(' ');
+}
+
+Widget imageDialog(context, imageUrl) {
+  return Dialog(
+    child: Container(
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * 1.0,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: ExactAssetImage(imageUrl), fit: BoxFit.cover)),
+    ),
+  );
+}
+
+Widget myHealthScore(double userHealthScore, context) {
+  return Container(
+    decoration: const BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(30)),
+      color: Color(0xFFe9f0f3),
+    ),
+    child: Center(
+        child: Container()
+    ),
+  );
+}
+
+Widget sectionTitle(context, String title) {
+  return Container(
+    margin: const EdgeInsets.only(
+      top: 20.0,
+      left: 20.0,
+      right: 20.0,
+      bottom: 20.0,
+    ),
+    child: Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Theme
+                  .of(context)
+                  .primaryColor,
+            ),
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(
+            top: 20,
+          ),
+          child: Divider(
+            color: Colors.black12,
+            height: 1,
+            thickness: 1,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget defaultFormField({required TextEditingController controller,
+  required TextInputType type,
+  Function? onSubmit,
+  Function? onChange,
+  bool isPassword = false,
+  required String? Function(String? val)? validate,
+  double radius = 0.0,
+  required String label,
+  IconData? prefix,
+  IconData? suffix,
+  Function? suffixPressed,
+  bool isClickable = true,
+  double width = double.infinity}) =>
     Container(
       width: width,
       height: 56,
@@ -52,107 +171,46 @@ Widget defaultFormField(
           hintStyle: const TextStyle(
               fontFamily: 'Metropolis-Regular',
               fontSize: 16,
-              color: Colors.red),
+              color: Colors.blue),
           suffixIcon: suffix != null
               ? IconButton(
-                  onPressed: () {
-                    suffixPressed!();
-                  },
-                  icon: Icon(
-                    suffix,
-                  ),
-                )
+            onPressed: () {
+              suffixPressed!();
+            },
+            icon: Icon(
+              suffix,
+            ),
+          )
               : null,
         ),
       ),
     );
 
-void navigateTo(context, widget) => Navigator.push(
+void navigateTo(context, widget) =>
+    Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
     );
-void navigateAndFinsh(context, widget) => Navigator.pushAndRemoveUntil(
+
+void navigateAndFinsh(context, widget) =>
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
-      (route) => false,
+          (route) => false,
     );
 
-// Widget defaultButton({
-//   double width = double.infinity,
-//   double height = 50,
-//   Color backgroundColor = AppColors.mainColor,
-//   Color borderColor = AppColors.mainColor,
-//   Color fontColor = Colors.white,
-//   bool isUpperCase = true,
-//   String fontFamily = 'Metropolis-SemiBold',
-//   double radius = 3.0,
-//   double borderWidth = 0,
-//   double fontSize = 18.0,
-//   required Function function,
-//   required String text,
-//   IconData? prefix,
-// }) =>
-//     Container(
-//       width: width,
-//       height: height,
-//       child: MaterialButton(
-//         onPressed: () {
-//           function();
-//         },
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             if (prefix != null)
-//               FaIcon(
-//                 prefix,
-//                 size: 20,
-//                 color: Color(0xfff50505),
-//               ),
-//             if (prefix != null)
-//               SizedBox(
-//                 width: 20,
-//               ),
-//             Text(
-//               isUpperCase ? text.toUpperCase() : text,
-//               style: TextStyle(
-//                   color: fontColor, fontSize: fontSize, fontFamily: fontFamily),
-//             ),
-//           ],
-//         ),
-//       ),
-//       decoration: BoxDecoration(
-//         border: Border.all(width: borderWidth, color: borderColor),
-//         borderRadius: BorderRadius.circular(
-//           radius,
-//         ),
-//         color: backgroundColor,
-//       ),
-//     );
-
-// IconButton cartIcon({required BuildContext context, Color color = AppColors.primaryFontColor}) {
-//   return IconButton(
-//     icon: Icon(
-//       FontAwesomeIcons.cartShopping,
-//       color: color,
-//       size: 25,
-//     ),
-//     onPressed: () {
-//       // navigateTo(context, CartScreen());
-//     },
-//   );
-// }
-
-
-
-Widget mySeparator() => Container(
+Widget mySeparator() =>
+    Container(
       width: double.infinity,
       height: 1,
       color: Colors.grey[500],
     );
+
+
 void showToast({
   required String msg,
   Color backgroundColor=Colors.black87,

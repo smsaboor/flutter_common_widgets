@@ -20,6 +20,7 @@ dev_dependencies:
   fluttertoast: ^8.0.9
   flutter_bloc: ^8.0.1
   connectivity: ^3.0.6
+  shimmer: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
