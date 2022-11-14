@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+
 class CustomFormField extends StatelessWidget {
   const CustomFormField(
-      {Key? key, required this.maxLimit,required this.maxLimitError,required this.readOnly,required this.controlller, required this.errorMsg, required this.labelText, required this.icon, required this.textInputType})
+      {Key? key,
+      required this.maxLimit,
+      required this.maxLimitError,
+      required this.readOnly,
+      required this.controlller,
+      required this.errorMsg,
+      required this.labelText,
+      required this.validator,
+      required this.onChanged,
+      required this.icon,
+      required this.textInputType})
       : super(key: key);
   final TextEditingController controlller;
   final errorMsg;
@@ -11,6 +22,8 @@ class CustomFormField extends StatelessWidget {
   final readOnly;
   final maxLimit;
   final maxLimitError;
+  final validator;
+  final onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +38,14 @@ class CustomFormField extends StatelessWidget {
           textInputAction: TextInputAction.next,
           readOnly: readOnly,
           controller: controlller,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return errorMsg;
-            }
-            else if (value!.length>maxLimit) {
-              return 'Limit $maxLimit character';
-            }
-            return null;
-          },
+          validator: validator,
           keyboardType: textInputType,
+          onChanged: onChanged,
           decoration: InputDecoration(
               border: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.teal)),
               labelText: labelText,
               prefixText: ' ',
-
               prefixIcon: Icon(
                 icon,
                 color: Colors.blue,
