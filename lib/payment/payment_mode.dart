@@ -229,15 +229,7 @@ class _PaymentModeState extends State<PaymentMode> {
         autoCloseDuration: const Duration(seconds: 600),
         onConfirmBtnTap: widget.onTap);
   }
-  // () {
-  // Navigator.pushAndRemoveUntil(
-  // context,
-  // MaterialPageRoute(
-  // builder: (BuildContext context) => PatientDashboard(),
-  // ),
-  // (route) => false,
-  // );
-  // }
+
   payment() async {
     await generateOrderId(int.parse(widget.fees));
     openCheckout();
