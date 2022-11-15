@@ -27,31 +27,28 @@ class CustomFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20),
-      child: Theme(
-        data: ThemeData(
-          primaryColor: Colors.redAccent,
-          primaryColorDark: Colors.red,
-        ),
-        child: TextFormField(
-          textInputAction: TextInputAction.next,
-          readOnly: readOnly,
-          controller: controlller,
-          validator: validator,
-          keyboardType: textInputType,
-          onChanged: onChanged,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.teal)),
-              labelText: labelText,
-              prefixText: ' ',
-              prefixIcon: Icon(
-                icon,
-                color: Colors.blue,
-              ),
-              suffixStyle: const TextStyle(color: Colors.green)),
-        ),
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.redAccent,
+        primaryColorDark: Colors.red,
+      ),
+      child: TextFormField(
+        textInputAction: TextInputAction.next,
+        readOnly: readOnly,
+        controller: controlller,
+        validator: validator,
+        keyboardType: textInputType,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.teal)),
+            labelText: labelText,
+            prefixText: ' ',
+            prefixIcon: Icon(
+              icon,
+              color: Colors.blue,
+            ),
+            suffixStyle: const TextStyle(color: Colors.green)),
       ),
     );
   }
