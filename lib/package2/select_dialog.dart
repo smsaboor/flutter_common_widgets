@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
-class CustomDropDownDialog extends StatefulWidget {
-  const CustomDropDownDialog(
+class GenderDialog extends StatefulWidget {
+  const GenderDialog(
       {Key? key,
-      required this.initialValue,
-      required this.valuesList,
-      required this.onChanged})
+      required this.onChanged,
+      required this.height})
       : super(key: key);
-  final initialValue;
-  final valuesList;
   final onChanged;
+  final height;
 
   @override
-  State<CustomDropDownDialog> createState() => _CustomDropDownDialogState();
+  State<GenderDialog> createState() => _GenderDialogState();
 }
 
-class _CustomDropDownDialogState extends State<CustomDropDownDialog> {
+class _GenderDialogState extends State<GenderDialog> {
+  var genderList = ['Male', 'Female', 'Others'];
+  String? gender = 'Male';
+
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -27,18 +29,18 @@ class _CustomDropDownDialogState extends State<CustomDropDownDialog> {
         margin: const EdgeInsets.all(1.0),
         padding: const EdgeInsets.only(left: 5.0),
         decoration: myBoxDecoration(),
-        height: 60,
+        height: widget.height,
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: DropdownButton<String>(
               menuMaxHeight: MediaQuery.of(context).size.height,
-              value: widget.initialValue,
+              value: gender,
               dropdownColor: Colors.white,
               focusColor: Colors.blue,
               isExpanded: true,
               icon: const Icon(Icons.keyboard_arrow_down),
-              items: widget.valuesList.map((String items) {
+              items: genderList.map((String items) {
                 return DropdownMenuItem<String>(
                   value: items,
                   child: Text(items),
