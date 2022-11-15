@@ -4,8 +4,10 @@ class GenderDialog extends StatefulWidget {
   const GenderDialog(
       {Key? key,
       required this.onChanged,
+        required this.initialValue,
       required this.height})
       : super(key: key);
+  final initialValue;
   final onChanged;
   final height;
 
@@ -35,7 +37,7 @@ class _GenderDialogState extends State<GenderDialog> {
           padding: const EdgeInsets.only(left: 8.0),
           child: DropdownButton<String>(
               menuMaxHeight: MediaQuery.of(context).size.height,
-              value: gender,
+              value: widget.initialValue,
               dropdownColor: Colors.white,
               focusColor: Colors.blue,
               isExpanded: true,
