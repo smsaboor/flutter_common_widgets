@@ -40,6 +40,8 @@ class CustomFormField extends StatelessWidget {
         keyboardType: textInputType,
         onChanged: onChanged,
         decoration: InputDecoration(
+            isDense: true,
+            contentPadding: EdgeInsets.zero,
             border: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.teal)),
             labelText: labelText,
