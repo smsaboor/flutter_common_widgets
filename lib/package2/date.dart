@@ -8,12 +8,12 @@ class CustomDate extends StatefulWidget {
       required this.controller,
       required this.validator,
       required this.labelText,
-      required this.year})
+      required this.initialDate})
       : super(key: key);
   final controller;
   final validator;
   final labelText;
-  final year;
+  final initialDate;
 
   @override
   State<CustomDate> createState() => _CustomDateState();
@@ -43,7 +43,7 @@ class _CustomDateState extends State<CustomDate> {
       onShowPicker: (context, currentValue) {
         return showDatePicker(
           context: context,
-          initialDate: DateTime.utc(widget.year),
+          initialDate: widget.initialDate,
           firstDate: DateTime.now().subtract(const Duration(days: 0)),
           lastDate: DateTime.now().add(const Duration(days: 240)),
         );
