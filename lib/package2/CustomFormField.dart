@@ -12,6 +12,7 @@ class CustomFormField extends StatelessWidget {
       required this.validator,
       required this.onChanged,
       required this.icon,
+        required this.maxLines,
       required this.textInputType})
       : super(key: key);
   final TextEditingController controlller;
@@ -24,6 +25,7 @@ class CustomFormField extends StatelessWidget {
   final maxLimitError;
   final validator;
   final onChanged;
+  final maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CustomFormField extends StatelessWidget {
       ),
       child: TextFormField(
         textInputAction: TextInputAction.next,
+        maxLines: maxLines,
         readOnly: readOnly,
         controller: controlller,
         validator: validator,
