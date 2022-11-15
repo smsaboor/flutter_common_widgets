@@ -31,7 +31,7 @@ class _CustomDropDownDialogState extends State<CustomDropDownDialog> {
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: DropdownButton(
+          child: DropdownButton<String>(
               menuMaxHeight: MediaQuery.of(context).size.height,
               value: widget.initialValue,
               dropdownColor: Colors.white,
@@ -39,7 +39,7 @@ class _CustomDropDownDialogState extends State<CustomDropDownDialog> {
               isExpanded: true,
               icon: const Icon(Icons.keyboard_arrow_down),
               items: widget.valuesList.map((String items) {
-                return DropdownMenuItem(
+                return DropdownMenuItem<String>(
                   value: items,
                   child: Text(items),
                 );
