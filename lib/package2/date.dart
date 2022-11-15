@@ -51,6 +51,10 @@ class _CustomDateState extends State<CustomDate> {
           initialDate: widget.initialDate,
           firstDate: widget.firstDate,
           lastDate: widget.lastDate
+
+        //     initialDate: DateTime(2000),
+        // firstDate: DateTime(1960),
+        // lastDate: DateTime(2010),
           // initialDate: DateTime.now(),
           // firstDate: DateTime.now().subtract(const Duration(days: 0)),
           // lastDate: DateTime.now().add(const Duration(days: 240)),
